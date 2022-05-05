@@ -20,10 +20,10 @@ export const getBlockchain = async (name) => {
 };
 
 //getall
-export const getBlockchains = async (name) => {
+export const getAllBlockchains = async () => {
   const col = await getBlockschainsCollection();
   //Todo filter by deletedAtflag so we dont return deleted blockchains
-  const blockchains = await col.find({}).toArrray();
+  const blockchains = await col.find({}).toArray();
 
   return blockchains;
 };
@@ -35,7 +35,7 @@ export const updateBlockchain = async (name, updateObject) => {
   await col.updateOne({ name }, { $set: updateObject });
 };
 
-//delete
+//soft delete
 export const deleteBlockchain = async (name) => {
   await updateBlockchain(name, { deletedAt: new Date() }); //makes data autedable
 };

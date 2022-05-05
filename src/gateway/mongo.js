@@ -12,3 +12,9 @@ export const getBlockschainsCollection = async () => {
 
   return db.collection("blockchains");
 };
+
+export const getSmartContractCollection = async () => {
+  const db = await getDb();
+
+  return db.collection("smartcontracts");
+};
