@@ -3,6 +3,7 @@ import {
   createBlockchain,
   getBlockchain,
   getAllBlockchains,
+  updateBlockchain,
 } from "../services/blockchain.service.js";
 
 export const blockchainRouter = Router();
@@ -28,4 +29,9 @@ blockchainRouter.get("/blockchain", async (req, res) => {
   res.status(200).send(blockchainArray);
 });
 
-//Update
+//delete
+blockchainRouter.patch("/delete/:name", async (req, res) => {
+  const blockchainName = req.params.name;
+  await deleteBlockchain(blockchainName);
+  res.status(200).send(blockchainName + " is now deleted");
+});
